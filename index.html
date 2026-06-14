@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let Becky Sleep</title>
+
+  <style>
+    :root {
+      --cream: #fff7ec;
+      --soft-pink: #f8d8dc;
+      --rose: #c96f7f;
+      --chocolate: #5b3527;
+      --cocoa: #7a4a38;
+      --blue: #9ecbd3;
+      --mountain: #789b8a;
+      --gold: #e2a84b;
+      --text: #39261f;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(91, 53, 39, 0.15);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(248, 216, 220, 0.85), transparent 35%),
+        radial-gradient(circle at top right, rgba(158, 203, 211, 0.7), transparent 35%),
+        radial-gradient(circle at 50% 45%, rgba(226, 168, 75, 0.18), transparent 35%),
+        var(--cream);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "☁";
+      position: absolute;
+      font-size: 18rem;
+      color: rgba(255, 255, 255, 0.55);
+      right: -2rem;
+      top: 2rem;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(91, 53, 39, 0.12);
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cocoa);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: 0.9;
+      margin: 0 0 1.4rem;
+      color: var(--chocolate);
+    }
+
+    .hero p {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.9rem 1.3rem;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary {
+      background: var(--chocolate);
+      color: var(--cream);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--chocolate);
+      border: 1px solid rgba(91, 53, 39, 0.15);
+    }
+
+    .photo-card {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(91, 53, 39, 0.12);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
+
+    .photo-placeholder {
+      min-height: 420px;
+      border-radius: 22px;
+      background:
+        linear-gradient(rgba(91, 53, 39, 0.08), rgba(91, 53, 39, 0.08)),
+        linear-gradient(135deg, #f8d8dc, #fff7ec, #9ecbd3);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: var(--cocoa);
+      font-size: 1.2rem;
+    }
+
+    .photo-card img {
+      border-radius: 22px;
+      object-fit: cover;
+      width: 100%;
+      min-height: 420px;
+      max-height: 520px;
+    }
+
+    .caption {
+      text-align: center;
+      margin: 0.8rem 0 0.2rem;
+      font-size: 0.95rem;
+      color: var(--cocoa);
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: var(--chocolate);
+      line-height: 1;
+      margin: 0 0 1rem;
+      text-align: center;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .soft-card {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(91, 53, 39, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+
+    .things-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .thing {
+      background: rgba(255, 255, 255, 0.76);
+      border-radius: 22px;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid rgba(91, 53, 39, 0.1);
+    }
+
+    .thing span {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .thing strong {
+      display: block;
+      color: var(--chocolate);
+      font-size: 1.05rem;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .feature.reverse {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .feature h2 {
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1;
+      color: var(--chocolate);
+      margin: 0 0 1rem;
+    }
+
+    .feature p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .big-quote {
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: 1;
+      color: var(--rose);
+      margin: 0;
+    }
+
+    .quote-card {
+      background:
+        linear-gradient(rgba(255, 247, 236, 0.88), rgba(255, 247, 236, 0.88)),
+        linear-gradient(135deg, var(--soft-pink), var(--blue));
+      border-radius: 36px;
+      padding: clamp(2rem, 5vw, 4rem);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(91, 53, 39, 0.12);
+    }
+
+    .manifesto {
+      background:
+        linear-gradient(rgba(255, 247, 236, 0.88), rgba(255, 247, 236, 0.88)),
+        linear-gradient(135deg, var(--soft-pink), var(--blue));
+      border-radius: 36px;
+      padding: clamp(2rem, 5vw, 4rem);
+      box-shadow: var(--shadow);
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      border: 1px solid rgba(91, 53, 39, 0.12);
+    }
+
+    .manifesto p {
+      font-size: 1.25rem;
+      margin: 0.6rem 0;
+    }
+
+    .manifesto .big-line {
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--rose);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    .permission-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .permission {
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(91, 53, 39, 0.1);
+      border-radius: 24px;
+      padding: 1.25rem 1.4rem;
+      font-size: 1.1rem;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .memory-card {
+      background: rgba(255, 255, 255, 0.76);
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid rgba(91, 53, 39, 0.1);
+      min-height: 170px;
+    }
+
+    .memory-card h3 {
+      margin-top: 0;
+      color: var(--chocolate);
+      font-size: 1.35rem;
+    }
+
+    .love-letter {
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 1.25rem;
+    }
+
+    .love-letter p {
+      margin-bottom: 1.2rem;
+    }
+
+    .signature {
+      font-size: 1.6rem;
+      color: var(--rose);
+      margin-top: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--cocoa);
+    }
+
+.mini-scene {
+  text-align: center;
+}
+
+.scene-icon {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.scene-note {
+  margin: 1rem 0 0;
+  font-size: 1.1rem;
+  color: var(--cocoa);
+  font-style: italic;
+}
+
+.quote-card {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    @media (max-width: 850px) {
+      .hero {
+        min-height: auto;
+        padding-top: 3.5rem;
+      }
+
+      .hero-grid,
+      .things-grid,
+      .memory-grid,
+      .permission-list,
+      .feature,
+      .feature.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .feature.reverse .quote-card {
+        order: -1;
+      }
+
+      .photo-card {
+        transform: none;
+      }
+
+      .photo-placeholder,
+      .photo-card img {
+        min-height: 300px;
+      }
+
+      .button-row {
+        justify-content: center;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">A love letter to rest, joy, and Becky</span>
+        <h1>Let Becky Sleep</h1>
+        <p>
+          A soft and silly tribute to naps, word games, chocolate, Salisbury Beach,
+          Saco River summers, rollercoasters, soap operas, dancing, and the woman
+          who made ordinary days feel safe, sweet, and full of adventure.
+        </p>
+<!-- 
+        <div class="button-row">
+          <a href="#dance" class="btn btn-primary">She CAN Dance</a>
+          <a href="#love" class="btn btn-secondary">Letter To Mom</a>
+        </div> -->
+      </div>
+
+      <div class="photo-card">
+    <img src="./Assets/momsleep.png" alt="Becky napping with Ron" />
+        <p class="caption">A woman who has earned her rest.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="things">
+      <div class="container">
+        <h2 class="section-title">The Becky Things</h2>
+        <p class="section-intro">
+          Every person has a little constellation of things that make them them.
+          These are a few of Becky’s.
+        </p>
+
+        <div class="things-grid">
+          <div class="thing">
+            <span>😴</span>
+            <strong>Naps</strong>
+            <p>Not laziness. A sacred reset.</p>
+          </div>
+
+          <div class="thing">
+            <span>🍫</span>
+            <strong>Chocolate</strong>
+            <p>Joy counts. Dessert counts. Becky knows this.</p>
+          </div>
+
+          <div class="thing">
+            <span>🌊</span>
+            <strong>Salisbury Beach</strong>
+            <p>Where regular clothes are no reason not to jump in.</p>
+          </div>
+
+          <div class="thing">
+            <span>⛰️</span>
+            <strong>North Conway</strong>
+            <p>Saco River summers, camping, mountains, and peace.</p>
+          </div>
+
+          <div class="thing">
+            <span>🔤</span>
+            <strong>Boggle</strong>
+            <p>Word-game queen behavior since forever.</p>
+          </div>
+
+          <div class="thing">
+            <span>💎</span>
+            <strong>Bejeweled</strong>
+            <p>A phone game? A lifestyle? A form of meditation? Yes.</p>
+          </div>
+
+          <div class="thing">
+            <span>🎢</span>
+            <strong>Rollercoasters</strong>
+            <p>Becky does not just like rides. Becky LOVES rides.</p>
+          </div>
+
+          <div class="thing">
+            <span>🍕</span>
+            <strong>Hawaiian Pizza</strong>
+            <p>With grape soda or rootbeer, obviously. Iconic.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dance">
+      <div class="container feature">
+        <div class="quote-card">
+        <div class="mini-scene">
+  <div class="scene-icon">💃🏻</div>
+  <p class="big-quote">She CAN dance.</p>
+  <p class="scene-note">One good song changed everything.</p>
+</div>
+        </div>
+
+        <div>
+          <h2>The Dance Floor Was Always Hers</h2>
+          <p>
+            When Becky was twelve, a girl once asked her, “Can’t you dance?”
+            It hurt enough that she remembered it for the rest of her life.
+          </p>
+
+          <p>
+            So let the record show, officially and forever:
+            <strong>Becky can dance.</strong>
+          </p>
+
+          <p>
+            In fact, dancing is part of the whole love story. One night, Ron was
+            about to leave a dance club when he decided to ask one last girl at
+            the bar to dance. Becky liked the song, felt the vibe, and said yes.
+          </p>
+
+          <p>
+            That dance became a marriage, a family, and a lifetime of stories.
+            So yes, Becky can dance. She danced her way into everything we love.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="beauty">
+      <div class="container feature reverse">
+        <div>
+          <h2>Beautiful, Even When She Couldn’t See It</h2>
+
+          <p>
+            Becky has not always seen herself the way the people who love her see her.
+            She has been hard on her body, hard on her reflection, and hard on the
+            parts of herself that deserved tenderness.
+          </p>
+
+          <p>
+            But beauty was never just a bathing suit or a photograph or a number
+            or a mirror.
+          </p>
+
+          <p>
+            Beauty was her jumping into the ocean in regular clothes.
+            Beauty was her laughing with her kids. Beauty was her dancing.
+            Beauty was her showing up with affection, food, comfort, and love.
+          </p>
+
+          <p>
+            Becky was beautiful in every season. Even the seasons when she could
+            not believe it.
+          </p>
+        </div>
+
+        <div class="quote-card">
+        <div class="mini-scene">
+  <div class="scene-icon">🌸</div>
+  <p class="big-quote">Loved exactly as she is.</p>
+  <p class="scene-note">Beautiful in every season.</p>
+</div>
+        </div>
+      </div>
+    </section>
+
+<section id="safe">
+  <div class="container feature">
+    <div class="quote-card">
+      <div class="mini-scene">
+        <div class="scene-icon">🏡</div>
+        <p class="big-quote">She made the world feel safe.</p>
+        <p class="scene-note">The softest place to land.</p>
+
+        <div class="tiny-memory-row">
+          <span>📺 Soap operas</span>
+          <span>🚌 City bus days</span>
+          <span>🤍 Sick day snuggles</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>The Mom Who Felt Like Home</h2>
+
+      <p>
+        As a kid, I told my mom everything. She was the person I felt safe with.
+        Safe to talk. Safe to cry. Safe to be myself.
+      </p>
+
+      <p>
+        When I missed school, she may have worried about what she was “supposed”
+        to do. But deep down, I think she understood something important: I was
+        not trying to be difficult. I did not feel safe or comfortable there.
+      </p>
+
+      <p>
+        So instead of making a hard day harder, she gave me comfort.
+      </p>
+
+      <p>
+        Sometimes that meant taking the city bus into town, walking around the mall,
+        and eating together in the food court. Sometimes it meant staying home with
+        soap operas, The Price Is Right, and the quiet relief of being near someone
+        who loved me.
+      </p>
+
+      <p>
+        It may not have looked like perfect parenting from a rule book. But it was
+        Becky parenting: soft, intuitive, protective, present, and safe.
+      </p>
+
+      <p>
+        And when I was sick, the safest place in the whole world was lying next to Mom.
+      </p>
+    </div>
+  </div>
+</section>
+
+    <section id="manifesto">
+      <div class="container">
+        <div class="manifesto">
+          <div class="big-line">The Nap Manifesto</div>
+
+          <p>We believe Becky has earned every nap.</p>
+          <p>We believe rest is not laziness.</p>
+          <p>We believe chocolate counts as joy.</p>
+          <p>We believe word games are brain exercise.</p>
+          <p>We believe rollercoasters are a perfectly reasonable personality trait.</p>
+          <p>We believe the ocean is always worth jumping into, even in regular clothes.</p>
+          <p>We believe a woman can be tired and still be strong.</p>
+          <p>Soft-spoken and still powerful.</p>
+          <p>Misunderstood and still deeply loved.</p>
+
+          <p>
+            Becky has spent her life loving people, feeding people, laughing with people,
+            praying for people, helping with school projects, driving buses, visiting sisters,
+            singing, dancing, and carrying more than most people ever knew.
+          </p>
+
+          <p><strong>So yes.</strong></p>
+          <p>Let Becky sleep.</p>
+          <p>Let Becky rest.</p>
+          <p>Let Becky have dessert.</p>
+          <p>Let Becky ride the rollercoaster.</p>
+          <p>Let Becky dance.</p>
+          <p>Let Becky know she is loved exactly as she is.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="permissions">
+      <div class="container">
+        <h2 class="section-title">Official Becky Permissions</h2>
+        <p class="section-intro">
+          Effective immediately and forever, Becky is hereby allowed to:
+        </p>
+
+        <div class="permission-list">
+          <div class="permission">Rest without guilt.</div>
+          <div class="permission">Eat the chocolate.</div>
+          <div class="permission">Drink soda with Hawaiian pizza.</div>
+          <div class="permission">Play Bejeweled as long as she wants.</div>
+          <div class="permission">Win at Boggle and act humble about it.</div>
+          <div class="permission">Talk about All My Children characters.</div>
+          <div class="permission">Jump in the ocean even if she brought no bathing suit.</div>
+          <div class="permission">Ride every ride at the amusement park.</div>
+          <div class="permission">Love her body for carrying her through this life.</div>
+          <div class="permission">Be loved without needing to perform.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="memories">
+      <div class="container">
+        <h2 class="section-title">Tiny Becky Legends</h2>
+        <p class="section-intro">
+          Little memories that say so much about who she is.
+        </p>
+
+        <div class="memory-grid">
+          <div class="memory-card">
+            <h3>The Ocean Rule</h3>
+            <p>
+              If the ocean is right there, you go in. Don't have a bathing suit? You still go in. 
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Dance Club Rule</h3>
+            <p>
+              If it is a good song and the vibe is right, you say yes to the dance.
+              Sometimes that dance becomes a whole family.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Sick Day Rule</h3>
+            <p>
+              Sometimes the best medicine is lying next to Mom and feeling completely safe.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The School Bus Rule</h3>
+            <p>
+              Riding along on Mom’s bus route could turn an ordinary day into a memory.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Saco River Rule</h3>
+            <p>
+              Popup trailer, tent, campground air, North Conway mountains, and Becky
+              in her happy place.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Soap Opera Rule</h3>
+            <p>
+              All My Children was not just a show. It became names, memories, and
+              part of the family mythology.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Food Court Rule</h3>
+            <p>
+              Sometimes love looks like taking the city bus into town, walking the mall,
+              and eating together instead of making a hard day harder.
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Project Rule</h3>
+            <p>
+              Becky helped with school projects, assignments, errands, thrift-store trips,
+              and all the little things that quietly say, “I am here.”
+            </p>
+          </div>
+
+          <div class="memory-card">
+            <h3>The Becky Rule</h3>
+            <p>
+              She deserved more gentleness than life gave her. So we are giving
+              some gentleness back.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rides">
+      <div class="container feature reverse">
+        <div>
+          <h2>Soft Heart, Rollercoaster Soul</h2>
+
+          <p>
+            Becky can be shy. Becky can be tired. Becky can be tender.
+            But do not let that fool you.
+          </p>
+
+          <p>
+            This woman loves amusement parks. She loves rides. She loves the rush,
+            the silliness, the laughter, and the feeling of being fully alive.
+          </p>
+
+          <p>
+            There has always been a fun, glowing, adventurous Becky in there.
+            Life may have covered her in worry sometimes, but it never erased her.
+          </p>
+        </div>
+
+        <div class="quote-card">
+         <div class="mini-scene">
+  <div class="scene-icon">🎢</div>
+  <p class="big-quote">Silly. Brave. Fun.</p>
+  <p class="scene-note">A soft heart with a rollercoaster soul.</p>
+
+  <div class="tiny-memory-row">
+    <span>🎟️ Amusement parks</span>
+    <span>🎢 Big rides</span>
+    <span>💗 Big joy</span>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="love">
+      <div class="container">
+        <div class="soft-card love-letter">
+          <h2 class="section-title">To Mom</h2>
+
+          <p>
+            We did not always understand how much you were carrying.
+            But we see more now.
+          </p>
+
+          <p>
+            We see your softness, your humor, your grief, your strength,
+            your sparkle, your faith, and your love.
+          </p>
+
+          <p>
+            We see the mother who made beach days magical. The woman who jumped
+            into the ocean in regular clothes. The mom who helped with school projects.
+            The bus driver who let us ride along. The person who made sick days feel safe.
+          </p>
+
+          <p>
+            We see the girl who was once made to feel like she could not dance.
+            And we see the woman who danced with Ronnie and built a whole family from
+            that yes.
+          </p>
+
+          <p>
+          We see the woman who loved her sisters, loved her children, loved her husband, loved her God, loved her sweets, and loved her mountains. A woman who kept loving deeply, even through the hard parts.
+          </p>
+
+          <p>
+            You were never too much. You were never not enough.
+            You were never invisible to us.
+          </p>
+
+          <p>
+            You were beautiful then. You are beautiful now. Not because life was easy
+            on you, but because your love kept shining anyway.
+          </p>
+
+          <p>
+            This little corner of the internet exists because you deserve to be
+            celebrated exactly as you are.
+          </p>
+
+          <p class="signature">We love you, Becky. Now please take a nap. 💕</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with love, chocolate, beach memories, good songs, and full permission to rest.
+  </footer>
+</body>
+</html>
